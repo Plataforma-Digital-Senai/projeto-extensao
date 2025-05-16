@@ -7,16 +7,12 @@ import 'primeicons/primeicons.css';
 import { SelectButton } from 'primereact/selectbutton';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { useRouter } from 'next/navigation';
 import { Link } from "lucide-react";
 
 export default function StyledMaskDemo() {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [senha, setSenha] = useState('');
-
-    const router = useRouter()
-
     const toast = useRef(null);
     const showInfo = () => {
     if (!validateEmail(email)) {
