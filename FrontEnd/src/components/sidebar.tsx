@@ -2,9 +2,8 @@
 
 import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { NavItems } from '@/config';
 import { cn } from '@/components/lib/utils';
-import { ChevronDown, LogOut, CircleUser, Menu } from 'lucide-react';
+import { ChevronDown, LogOut, CircleUser, Menu, Briefcase, FileText, Folder } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
@@ -12,8 +11,49 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 
-export default function SideNav() {
-  const navItems = NavItems();
+
+// Defina a função NavItems para retornar itens com base na função do usuário
+export const NavItems = (role: string) => {
+  const commonItems = [
+    {
+      name: 'Projetos',
+      href: '/projects',
+      icon: <Folder size={20} className="text-white" />,
+      active: false,
+    },
+  ];
+
+  const studentItems = [
+    ...commonItems,
+    {
+      name: 'Cadastrar Demanda',
+      href: '/demands/new',
+      icon: <FileText size={20} className="text-white" />,
+      active: false,
+    },
+    {
+      name: 'Meus Projetos',
+      href: '/my-projects',
+      icon: <Briefcase size={20} className="text-white" />,
+      active: false,
+    },
+  ];
+
+  const professorItems = [
+    ...commonItems,
+    {
+      name: 'Demandas',
+      href: '/demands',
+      icon: <FileText size={20} className="text-white" />,
+      active: false,
+    },
+  ];
+
+  return role === 'professor' ? professorItems : studentItems;
+};
+
+export default function Sidebar({ session_token_role }: { session_token_role: string }) {
+  const navItems = NavItems(session_token_role); 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
   useEffect(() => {
@@ -35,32 +75,35 @@ export default function SideNav() {
     setIsSidebarExpanded(!isSidebarExpanded);
   };
 
+
+
+
   return (
     <div
-  className={cn(
-    'fixed inset-y-0 left-0 z-40 bg-[#1D154A] rounded-r-3xl transition-all duration-300 ease-in-out',
-    'w-16 md:w-[256px]',
-    'md:w-[64px]',
-    isSidebarExpanded ? 'md:w-[256px]' : 'md:w-[64px]',
-    'h-screen flex flex-col'
-  )}
->
+      className={cn(
+        'fixed inset-y-0 left-0 z-40 bg-[#1D154A] rounded-r-3xl transition-all duration-300 ease-in-out',
+        'w-16 md:w-[256px]',
+        'md:w-[64px]',
+        isSidebarExpanded ? 'md:w-[256px]' : 'md:w-[64px]',
+        'h-screen flex flex-col'
+      )}
+    >
       <aside className="flex h-full flex-col w-full break-words px-2 md:px-4 overflow-x-hidden">
         <div className={cn(
-  'mt-4 flex items-center px-2',
-  isSidebarExpanded ? 'justify-between' : 'justify-center'
-)}>
-  <span className="text-[#1E6ECD] font-bold text-lg hidden md:block md:visible font-['Russo_One'] tracking-wide">
-    {isSidebarExpanded && 'UniSenai'}
-  </span>
-  <button
-    type="button"
-    className="flex h-6 w-6 items-center justify-center rounded-full  shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out hidden md:block"
-    onClick={toggleSidebar}
-  >
-    <Menu size={24} className="text-white" />
-  </button>
-</div>
+          'mt-4 flex items-center px-2',
+          isSidebarExpanded ? 'justify-between' : 'justify-center'
+        )}>
+          <span className="text-[#1E6ECD] font-extrabold text-lg hidden md:block md:visible tracking-wide">
+            {isSidebarExpanded && 'UniSenai'}
+          </span>
+          <button
+            type="button"
+            className="flex h-6 w-6 items-center justify-center rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out hidden md:block"
+            onClick={toggleSidebar}
+          >
+            <Menu size={24} className="text-white" />
+          </button>
+        </div>
 
         {/* Perfil do Usuário */}
         <div className={cn(
@@ -78,14 +121,16 @@ export default function SideNav() {
                   {isSidebarExpanded && (
                     <div className="flex flex-col hidden md:block md:visible">
                       <span className="text-white font-medium">Rodrigo</span>
-                      <br></br>
-                      <span className="text-gray-400 text-sm">Estudante</span>
+                      <br />
+                      <span className="text-gray-400 text-sm">
+                        {session_token_role === 'professor' ? 'Professor' : 'Estudante'}
+                      </span>
                     </div>
                   )}
                 </div>
               </TooltipTrigger>
               <TooltipContent side="right" className="px-3 py-1.5 text-xs bg-gray-800 text-white">
-                <span>Rodrigo - Estudante</span>
+                <span>Rodrigo - {session_token_role === 'professor' ? 'Professor' : 'Estudante'}</span>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
