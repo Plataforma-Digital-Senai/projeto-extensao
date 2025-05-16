@@ -1,26 +1,60 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --corfundo: #F3F5F7;
+  --logo: #024899;
+  --fundo-botao: #BCD1F4;
+  --botao: #1D154A;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--corfundo);
 }
+
+.custom-selectbutton .p-button:not(.p-highlight){
+  background-color: transparent;
+  color: black;
+   border-radius: 13px;
+}
+.custom-selectbutton .p-button:not(.p-highlight):hover {
+  background-color: #100936 !important; 
+  color: white; 
+  transform: scale(1.05);
+  border-radius: 13px;
+}
+.custom-selectbutton .p-button.p-highlight {
+  background-color: #1d154a !important; 
+  color: white; 
+  border-radius: 13px;  
+  border: none !important;
+  outline: none !important;
+}
+.custom-button{
+  background-color: #1D154A !important;
+}
+.custom-toast .p-toast{
+  width: 100px !important;
+  height: 32px !important;
+  opacity: 0.95 !important;
+}
+.custom-toast .p-toast-message{
+  background-color:#024899 !important;
+  color: rgb(255, 255, 255) !important;
+  border-radius: 12px !important; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  min-height: 20px !important;
+  padding: none !important;
+  border: #100936 !important;
+  text-align: center !important;
+}
+.custom-toast .p-toast-message .p-toast-icon-close {
+  color: white !important; 
+}
+.custom-toast .p-toast-message-info {
+  border-left: none !important; 
+}
+
