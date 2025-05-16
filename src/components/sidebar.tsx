@@ -52,7 +52,7 @@ export const NavItems = (role: string) => {
   return role === 'professor' ? professorItems : studentItems;
 };
 
-export default function SideNav({ session_token_role }: { session_token_role: string }) {
+export default function Sidebar({ session_token_role }: { session_token_role: string }) {
   const navItems = NavItems(session_token_role); 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
@@ -77,7 +77,7 @@ export default function SideNav({ session_token_role }: { session_token_role: st
 
 
 
-  
+
   return (
     <div
       className={cn(
