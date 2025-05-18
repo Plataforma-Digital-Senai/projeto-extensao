@@ -25,7 +25,7 @@ export default function List() {
 
   return (
     <div
-      className="space-y-4 my-[5%] flex gap-2 rounded-md items-center justify-center shadow-lg min-w-[60%] h-full overflow-x-auto"
+      className="space-y-4 my-[5%] flex gap-2 rounded-md items-center justify-center shadow-lg min-w-4/5 h-full overflow-x-auto"
       style={{ backgroundColor: "#dce6f0" }}
     >
       <div className="relative w-full">
@@ -33,7 +33,7 @@ export default function List() {
           <Close />
         </button>
 
-        <table className="p-6 mb-[10%] mt-[12%] ml-14 min-w-[85%] min-h-[60%] border-none items-center justify-center">
+        <table className="p-6 mb-[10%] mt-[8%] ml-[7%] min-w-6/7 min-h-[60%] border-none items-center justify-center">
           <thead className="text-xl text-black">
             <tr>
               <th className="px-3 text-center font-normal">N°</th>
