@@ -25,91 +25,93 @@ export default function List() {
 
   return (
     <div
-      className="space-y-4 my-[5%] flex gap-2 rounded-md items-center justify-center shadow-lg min-w-4/5 h-full overflow-x-auto"
+      className="lg:space-y-4 my-[7%] lg:my-[5%] ml-[15%] lg:ml-0 flex gap-2 rounded-md items-center justify-center shadow-lg w-4/6 lg:w-4/5 lg:h-full overflow-x-auto"
       style={{ backgroundColor: "#dce6f0" }}
     >
       <div className="relative w-full">
-        <button className="absolute top-4 right-4 z-10">
+        <button className="absolute top-3 lg:top-8 left-3 md:left-auto md:right-7 z-10">
           <Close />
         </button>
 
-        <table className="p-6 mb-[10%] mt-[8%] ml-[7%] min-w-6/7 min-h-[60%] border-none items-center justify-center">
-          <thead className="text-xl text-black">
-            <tr>
-              <th className="px-3 text-center font-normal">N°</th>
-              <th className="px-3 text-center font-normal">Nome:</th>
-              <th className="px-3 text-center font-normal">Turma:</th>
-              <th className="px-3 text-center font-normal">Líder</th>
-              <th className="px-3 text-center font-normal">Remover</th>
-              <th className="px-3 text-center font-normal">Situação:</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {alunos.map((aluno) => (
-              <tr key={aluno.id}>
-                <td className="p-3 text-center">
-                  <div
-                    className="bg-white text-center w-full flex items-center justify-center gap-2 text-black p-2 rounded-md border border-2"
-                    style={{ borderColor: "#7E9DD6" }}
-                  >
-                    {aluno.id}
-                  </div>
-                </td>
-                <td className="p-3 text-center">
-                  <div
-                    className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
-                    style={{ borderColor: "#7E9DD6" }}
-                  >
-                    {aluno.firstName} {aluno.lastName}
-                  </div>
-                </td>
-                <td className="p-3 text-center">
-                  <div
-                    className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
-                    style={{ borderColor: "#7E9DD6" }}
-                  >
-                    {aluno.address.state}
-                  </div>
-                </td>
-                <td className="p-3 pl-5 text-center">
-                  <button
-                    className="bg-white flex items-center justify-center gap-2 p-2 rounded-md border border-2"
-                    style={{ borderColor: "#7E9DD6" }}
-                    title="Promover aluno a lider"
-                  >
-                    <div className="text-2xl">
-                      <FaCrown />
-                    </div>
-                  </button>
-                </td>
-                <td className="p-3 pl-10 text-center">
-                  <button
-                    className="bg-white flex items-center justify-center gap-2 text-red-600 p-2 rounded-md border border-2"
-                    style={{ borderColor: "#7E9DD6" }}
-                    title="Expulsar aluno"
-                  >
-                    <div className="text-2xl">
-                      <MdCancel />
-                    </div>
-                  </button>
-                </td>
-                <td className="p-3 text-center">
-                  <button
-                    className="text-center w-full flex items-center justify-center gap-2 text-white p-2 rounded-md"
-                    style={{ backgroundColor: "#1D154A" }}
-                    title="Situação do aluno"
-                  >
-                    Aprovado
-                  </button>
-                </td>
+        <div className="mx-4 lg:mx-0">
+          <table className="lg:p-6 lg:mb-[10%] mt-16 lg:mt-[8%] lg:ml-[7%] lg:w-6/7 lg:h-[60%] border-none items-center justify-center">
+            <thead className="text-xl text-black">
+              <tr>
+                <th className="lg:px-3 text-center font-normal">N°</th>
+                <th className="lg:px-3 text-center font-normal">Nome:</th>
+                <th className="lg:px-3 text-center font-normal">Turma:</th>
+                <th className="lg:px-3 text-center font-normal">Líder</th>
+                <th className="lg:px-3 text-center font-normal">Remover</th>
+                <th className="lg:px-3 text-center font-normal">Situação:</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {alunos.map((aluno) => (
+                <tr key={aluno.id}>
+                  <td className="p-3 text-center">
+                    <div
+                      className="bg-white text-center w-full flex items-center justify-center gap-2 text-black p-2 rounded-md border border-2"
+                      style={{ borderColor: "#7E9DD6" }}
+                    >
+                      {aluno.id}
+                    </div>
+                  </td>
+                  <td className="p-3 text-center">
+                    <div
+                      className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
+                      style={{ borderColor: "#7E9DD6" }}
+                    >
+                      {aluno.firstName} {aluno.lastName}
+                    </div>
+                  </td>
+                  <td className="p-3 text-center">
+                    <div
+                      className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
+                      style={{ borderColor: "#7E9DD6" }}
+                    >
+                      {aluno.address.state}
+                    </div>
+                  </td>
+                  <td className="p-3 lg:pl-[3%] text-center">
+                    <button
+                      className="bg-white flex items-center justify-center gap-2 p-2 rounded-md border border-2"
+                      style={{ borderColor: "#7E9DD6" }}
+                      title="Promover aluno a lider"
+                    >
+                      <div className="text-2xl">
+                        <FaCrown />
+                      </div>
+                    </button>
+                  </td>
+                  <td className="p-3 lg:pl-[5%] text-center">
+                    <button
+                      className="bg-white flex items-center justify-center gap-2 text-red-600 p-2 rounded-md border border-2"
+                      style={{ borderColor: "#7E9DD6" }}
+                      title="Expulsar aluno"
+                    >
+                      <div className="text-2xl">
+                        <MdCancel />
+                      </div>
+                    </button>
+                  </td>
+                  <td className="p-3 text-center">
+                    <button
+                      className="text-center w-full flex items-center justify-center gap-2 text-white p-2 rounded-md"
+                      style={{ backgroundColor: "#1D154A" }}
+                      title="Situação do aluno"
+                    >
+                      Aprovado
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className="w-full flex">
           <button
-            className="text-center mb-[10%] ml-[61%] w-[30%] text-2xl items-center justify-center gap-2 text-white p-2 rounded-md"
+            className="text-center mb-[8%] lg:mb-[10%] ml-[8%] lg:ml-[61%] mt-5 lg:mt-0 max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 text-white p-1 lg:p-2 rounded-md"
             style={{ backgroundColor: "#1D154A" }}
             title="Encerrar projeto"
           >
