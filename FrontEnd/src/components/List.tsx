@@ -35,39 +35,39 @@ export default function List() {
 
         <div className="mx-4 lg:mx-0">
           <table className="lg:p-6 lg:mb-[10%] mt-16 lg:mt-[8%] lg:ml-[7%] lg:w-6/7 lg:h-[60%] border-none items-center justify-center">
-            <thead className="text-xl text-black">
+            <thead className="text-xl">
               <tr>
-                <th className="lg:px-3 text-center font-normal">N°</th>
-                <th className="lg:px-3 text-center font-normal">Nome:</th>
-                <th className="lg:px-3 text-center font-normal">Turma:</th>
-                <th className="lg:px-3 text-center font-normal">Líder</th>
-                <th className="lg:px-3 text-center font-normal">Remover</th>
-                <th className="lg:px-3 text-center font-normal">Situação:</th>
+                <th className="titleList">N°</th>
+                <th className="titleList">Nome:</th>
+                <th className="titleList">Turma:</th>
+                <th className="titleList">Líder</th>
+                <th className="titleList">Remover</th>
+                <th className="titleList">Situação:</th>
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className="font-medium">
               {alunos.map((aluno) => (
                 <tr key={aluno.id}>
-                  <td className="p-3 text-center">
+                  <td className="itemList">
                     <div
-                      className="bg-white text-center w-full flex items-center justify-center gap-2 text-black p-2 rounded-md border border-2"
+                      className="bg-white text-center w-full text-black p-2 itemListInside border border-2"
                       style={{ borderColor: "#7E9DD6" }}
                     >
                       {aluno.id}
                     </div>
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="itemList">
                     <div
-                      className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
+                      className="bg-white text-left w-full text-black p-2 itemListInside border border-2"
                       style={{ borderColor: "#7E9DD6" }}
                     >
                       {aluno.firstName} {aluno.lastName}
                     </div>
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="itemList">
                     <div
-                      className="bg-white text-left w-full flex items-center gap-2 text-black p-2 rounded-md border border-2"
+                      className="bg-white text-left w-full text-black p-2 itemListInside border border-2"
                       style={{ borderColor: "#7E9DD6" }}
                     >
                       {aluno.address.state}
@@ -75,7 +75,7 @@ export default function List() {
                   </td>
                   <td className="p-3 lg:pl-[3%] text-center">
                     <button
-                      className="bg-white flex items-center justify-center gap-2 p-2 rounded-md border border-2"
+                      className="bg-white p-2 itemListInside border border-2"
                       style={{ borderColor: "#7E9DD6" }}
                       title="Promover aluno a lider"
                     >
@@ -86,7 +86,7 @@ export default function List() {
                   </td>
                   <td className="p-3 lg:pl-[5%] text-center">
                     <button
-                      className="bg-white flex items-center justify-center gap-2 text-red-600 p-2 rounded-md border border-2"
+                      className="bg-white text-red-600 p-2 itemListInside border border-2"
                       style={{ borderColor: "#7E9DD6" }}
                       title="Expulsar aluno"
                     >
@@ -95,9 +95,9 @@ export default function List() {
                       </div>
                     </button>
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="itemList">
                     <button
-                      className="text-center w-full flex items-center justify-center gap-2 text-white p-2 rounded-md"
+                      className="text-center w-full itemListInside text-white p-2"
                       style={{ backgroundColor: "#1D154A" }}
                       title="Situação do aluno"
                     >

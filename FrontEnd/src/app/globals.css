@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.titleList {
+  @apply lg:px-3 text-center font-semibold;
+}
+.itemList {
+  @apply p-3 text-center;
+}
+.itemListInside {
+  @apply flex items-center justify-center gap-2 rounded-md;
+}
