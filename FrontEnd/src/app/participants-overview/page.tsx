@@ -4,7 +4,7 @@ import Sidebar from "@/components/sidebar";
 export default function Alunos() {
   return (
     <div className="flex flex-col items-center">
-      <Sidebar />
+      <Sidebar session_token_role="professor" />
       <List />
     </div>
   );

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Paginator } from "primereact/paginator";
 import Close from "./Close";
 import AlunoRow from "./AlunoRow";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Aluno {
   id: number;
@@ -15,12 +18,20 @@ interface Aluno {
 
 export default function List() {
   const [alunos, setAlunos] = useState<Aluno[]>([]);
+  const searchParams = useSearchParams();
+  const [total, setTotal] = useState(0);
+  const limit = searchParams.get("limit") || "10";
+  const offset = searchParams.get("offset") || "0";
+  const router = useRouter();
 
   useEffect(() => {
-    fetch("https://dummyjson.com/users?limit=10")
+    fetch(`https://dummyjson.com/users?limit=${limit}&skip=${offset}`)
       .then((res) => res.json())
-      .then((data) => setAlunos(data.users));
-  }, []);
+      .then((data) => {
+        setAlunos(data.users);
+        setTotal(data.total);
+      });
+  }, [limit, offset]);
 
   return (
     <div
@@ -52,9 +63,20 @@ export default function List() {
             </tbody>
           </table>
         </div>
+        <div className="w-full flex items-center justify-center mt-[10%] lg:mt-[-5%] !p-0 ">
+          <Paginator
+            first={parseInt(offset)}
+            rows={parseInt(limit)}
+            totalRecords={total}
+            onPageChange={(e) => {
+              router.push(`?limit=${e.rows}&offset=${e.first}`);
+            }}
+            template={{ layout: "PrevPageLink CurrentPageReport NextPageLink" }}
+          />
+        </div>
         <div className="w-full flex">
           <button
-            className="custom-button mb-[8%] lg:mb-[10%] ml-[8%] lg:ml-[61%] mt-5 lg:mt-0 max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 p-1 lg:p-2 rounded-md"
+            className="custom-button mb-[12%] lg:mb-[9%] ml-[8%] lg:ml-[61%] mt-[10%] lg:mt-[5%] max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 p-1 lg:p-2 rounded-md"
             title="Encerrar projeto"
           >
             Encerrar projeto
