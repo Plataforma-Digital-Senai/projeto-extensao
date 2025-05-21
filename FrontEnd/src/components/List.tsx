@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaCrown } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
 import Close from "./Close";
+import AlunoRow from "./AlunoRow";
 
 interface Aluno {
   id: number;
@@ -48,71 +47,14 @@ export default function List() {
 
             <tbody className="font-medium">
               {alunos.map((aluno) => (
-                <tr key={aluno.id}>
-                  <td className="itemList">
-                    <div
-                      className="bg-white text-center w-full text-black p-2 itemListInside border border-2"
-                      style={{ borderColor: "#7E9DD6" }}
-                    >
-                      {aluno.id}
-                    </div>
-                  </td>
-                  <td className="itemList">
-                    <div
-                      className="bg-white text-left w-full text-black p-2 itemListInside border border-2"
-                      style={{ borderColor: "#7E9DD6" }}
-                    >
-                      {aluno.firstName} {aluno.lastName}
-                    </div>
-                  </td>
-                  <td className="itemList">
-                    <div
-                      className="bg-white text-left w-full text-black p-2 itemListInside border border-2"
-                      style={{ borderColor: "#7E9DD6" }}
-                    >
-                      {aluno.address.state}
-                    </div>
-                  </td>
-                  <td className="p-3 lg:pl-[3%] text-center">
-                    <button
-                      className="bg-white p-2 itemListInside border border-2"
-                      style={{ borderColor: "#7E9DD6" }}
-                      title="Promover aluno a lider"
-                    >
-                      <div className="text-2xl">
-                        <FaCrown />
-                      </div>
-                    </button>
-                  </td>
-                  <td className="p-3 lg:pl-[5%] text-center">
-                    <button
-                      className="bg-white text-red-600 p-2 itemListInside border border-2"
-                      style={{ borderColor: "#7E9DD6" }}
-                      title="Expulsar aluno"
-                    >
-                      <div className="text-2xl">
-                        <MdCancel />
-                      </div>
-                    </button>
-                  </td>
-                  <td className="itemList">
-                    <button
-                      className="text-center w-full itemListInside text-white p-2"
-                      style={{ backgroundColor: "#1D154A" }}
-                      title="Situação do aluno"
-                    >
-                      Aprovado
-                    </button>
-                  </td>
-                </tr>
+                <AlunoRow key={aluno.id} aluno={aluno} />
               ))}
             </tbody>
           </table>
         </div>
         <div className="w-full flex">
           <button
-            className="text-center mb-[8%] lg:mb-[10%] ml-[8%] lg:ml-[61%] mt-5 lg:mt-0 max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 text-white p-1 lg:p-2 rounded-md"
-            style={{ backgroundColor: "#1D154A" }}
+            className="custom-button mb-[8%] lg:mb-[10%] ml-[8%] lg:ml-[61%] mt-5 lg:mt-0 max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 p-1 lg:p-2 rounded-md"
             title="Encerrar projeto"
           >
             Encerrar projeto
