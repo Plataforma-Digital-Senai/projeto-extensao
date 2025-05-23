@@ -11,16 +11,23 @@ import { Link } from "lucide-react";
 
 export default function StyledMaskDemo() {
     const [email, setEmail] = useState('');
-    const [emailError, setEmailError] = useState('');
+    const [emailError, setEmailError] = useState(''); 
+    const [passwordError, setPasswordError] = useState('');  
+
     const [senha, setSenha] = useState('');
     const toast = useRef(null);
-    const showInfo = () => {
-    if (!validateEmail(email)) {
-        setEmailError("E-mail inválido");
-        return; 
-    }
 
-    setEmailError("");
+    const showInfo = () => {
+        if (senha === ""){
+            setPasswordError("Preencha o campo de senha!");
+            return; 
+        }
+        if (!validateEmail(email)) {
+            setEmailError("E-mail inválido");
+            return; 
+        }
+
+        setEmailError("");
 };
 
     const validateEmail = (email: string) => {
@@ -78,9 +85,17 @@ export default function StyledMaskDemo() {
                                 feedback={false}
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
-                                placeholder="Digite sua senha"
+                                onBlur={() => {
+                                    if (senha == "") {
+                                        setPasswordError("Preencha o campo de senha!");
+                                    } else {
+                                        setPasswordError("");
+                                    }
+                                }}
                                 className="w-60"
+                                placeholder="Digite sua senha"
                             />
+                            {passwordError && <span className="text-red-500 text-xs">{passwordError}</span>}
                         </div>
                     </form>
 
@@ -100,7 +115,7 @@ export default function StyledMaskDemo() {
                     <div className="card flex justify-center mt-3">
                         <Toast ref={toast} />
                         <div className="flex flex-wrap gap-2">
-                            <Button label="Entrar" severity="info" className="custom-button" />
+                            <Button label="Entrar" severity="info" onClick={showInfo} className="custom-button" />
                         </div>
                     </div>
 
