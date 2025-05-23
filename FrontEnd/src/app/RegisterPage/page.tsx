@@ -24,13 +24,21 @@ export default function TelaCadastro() {
 
     const toast = useRef(null);
     const showInfo = () => {
-        if (!validateEmail(email)) {
-            setEmailError("E-mail inválido");
-            return;
+        let isValid = true;
+        if(!nome || !email || !curso || !turma || !ra || !cpf || !senha){
+            toast.current?.show({severity: 'error', detail: 'Por favor, preencha todos os campos!'});
+            isValid = false;
         }
 
+        if (!validateEmail(email)) {
+            setEmailError("E-mail inválido");
+            isValid = false;
+        }else {
         setEmailError("");
-        toast.current.show({ severity: 'info', detail: 'Usuário cadastrado com sucesso!' });
+        }
+        if (!isValid) return;
+
+        toast.current?.show({ severity: 'info', detail: 'Usuário cadastrado com sucesso!' });
 
         setNome('');
         setEmail('');
@@ -81,12 +89,12 @@ export default function TelaCadastro() {
 
                         <div className="flex flex-col gap-1">
                             <label>Nome:</label>
-                            <InputText value={nome} onChange={(e) => setNome(e.target.value)} className="w-full h-10" />
+                            <InputText value={nome} onChange={(e) => setNome(e.target.value)} required className="w-full h-10" />
                         </div>
 
                         <div className="flex flex-col gap-1">
                             <label>RA/NI:</label>
-                            <InputText value={ra} onChange={(e) => setRa(e.target.value)} className="w-full h-10" />
+                            <InputText value={ra} onChange={(e) => setRa(e.target.value)} required className="w-full h-10" />
                         </div>
 
                         <div className="flex flex-col gap-1">
@@ -124,7 +132,7 @@ export default function TelaCadastro() {
                                         setEmailError("");
                                     }
                                 }}
-                                className={`w-full h-10 ${emailError ? 'border border-red-500' : ''}`}
+                                required className={`w-full h-10 ${emailError ? 'border border-red-500' : ''}`}
                             />
                             {emailError && <span className="text-red-500 text-xs">{emailError}</span>}
                         </div>
@@ -136,7 +144,7 @@ export default function TelaCadastro() {
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
                                 placeholder="Digite sua senha"
-                                className=" w-full h-10 text-sm pl-3 pr-10 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500"
+                                required className=" w-full h-10 text-sm pl-3 pr-10 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500"
                             />
                             <button
                                 type="button"
@@ -154,7 +162,7 @@ export default function TelaCadastro() {
                                 onChange={(e) => setCpf(e.value as string)}
                                 mask="999.999.999-99"
                                 placeholder="000.000.000-00"
-                                className="w-full h-10"
+                                 required className="w-full h-10"
                             />
                         </div>
 
