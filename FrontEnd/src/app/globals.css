@@ -15,17 +15,27 @@ body {
   background: var(--corfundo);
 }
 
-.custom-selectbutton .p-button:not(.p-highlight){
+.custom-selectbutton {
+  @apply w-full sm:w-64 h-8 pl-1.5;
+}
+
+.custom-selectbutton .p-button {
+  @apply w-full sm:w-auto;
+}
+
+.custom-selectbutton .p-button:not(.p-highlight) {
   background-color: transparent;
   color: black;
-   border-radius: 13px;
+  border-radius: 13px;
 }
+
 .custom-selectbutton .p-button:not(.p-highlight):hover {
   background-color: #100936 !important; 
   color: white; 
   transform: scale(1.05);
   border-radius: 13px;
 }
+
 .custom-selectbutton .p-button.p-highlight {
   background-color: #1d154a !important; 
   color: white; 
@@ -33,16 +43,23 @@ body {
   border: none !important;
   outline: none !important;
 }
-.custom-button{
+
+.p-password .p-password-panel {
+  @apply w-full sm:w-3/4;
+}
+
+.custom-button {
   background-color: #1D154A !important;
 }
-.custom-toast .p-toast{
+
+.custom-toast .p-toast {
   width: 100px !important;
   height: 32px !important;
   opacity: 0.95 !important;
 }
-.custom-toast .p-toast-message{
-  background-color:#024899 !important;
+
+.custom-toast .p-toast-message {
+  background-color: #024899 !important;
   color: rgb(255, 255, 255) !important;
   border-radius: 12px !important; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
@@ -51,10 +68,11 @@ body {
   border: #100936 !important;
   text-align: center !important;
 }
+
 .custom-toast .p-toast-message .p-toast-icon-close {
   color: white !important; 
 }
+
 .custom-toast .p-toast-message-info {
   border-left: none !important; 
 }
-
