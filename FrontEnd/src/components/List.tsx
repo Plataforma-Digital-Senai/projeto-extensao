@@ -14,6 +14,7 @@ interface Aluno {
   address: {
     state: string;
   };
+  gender: string;
 }
 
 export default function List() {
@@ -28,10 +29,64 @@ export default function List() {
     fetch(`https://dummyjson.com/users?limit=${limit}&skip=${offset}`)
       .then((res) => res.json())
       .then((data) => {
-        setAlunos(data.users);
+        const alunas = data.users
+          .filter((user: Aluno) => user.gender === "female")
+          .map((user: Aluno) => ({
+            ...user,
+          }));
+
+        setAlunos(alunas);
         setTotal(data.total);
       });
   }, [limit, offset]);
+
+  function expelAluno(id: number) {
+    setAlunos((prev) =>
+      prev.map((aluno) =>
+        aluno.id === id ? { ...aluno, gender: "male" } : aluno
+      )
+    );
+  }
+
+  function promoteAluno(id: number) {
+    setAlunos((prev) =>
+      prev.map((aluno) =>
+        aluno.id === id
+          ? { ...aluno, address: { ...aluno.address, state: "Alabama" } }
+          : aluno
+      )
+    );
+  }
+
+  function unPromoteAluno(id: number) {
+    setAlunos((prev) =>
+      prev.map((aluno) =>
+        aluno.id === id
+          ? { ...aluno, address: { ...aluno.address, state: "Utah" } }
+          : aluno
+      )
+    );
+  }
+
+  function approvedAluno(id: number) {
+    setAlunos((prev) =>
+      prev.map((aluno) =>
+        aluno.id === id
+          ? { ...aluno, address: { ...aluno.address, state: "Utah" } }
+          : aluno
+      )
+    );
+  }
+
+  function reprovedAluno(id: number) {
+    setAlunos((prev) =>
+      prev.map((aluno) =>
+        aluno.id === id
+          ? { ...aluno, address: { ...aluno.address, state: "Tennessee" } }
+          : aluno
+      )
+    );
+  }
 
   return (
     <div
@@ -57,9 +112,19 @@ export default function List() {
             </thead>
 
             <tbody className="font-medium">
-              {alunos.map((aluno) => (
-                <AlunoRow key={aluno.id} aluno={aluno} />
-              ))}
+              {alunos
+                .filter((aluno) => aluno.gender === "female")
+                .map((aluno) => (
+                  <AlunoRow
+                    key={aluno.id}
+                    aluno={aluno}
+                    onExpel={expelAluno}
+                    onPromote={promoteAluno}
+                    onUnPromote={unPromoteAluno}
+                    onApproved={approvedAluno}
+                    onReproved={reprovedAluno}
+                  />
+                ))}
             </tbody>
           </table>
         </div>
@@ -76,7 +141,7 @@ export default function List() {
         </div>
         <div className="w-full flex">
           <button
-            className="custom-button mb-[12%] lg:mb-[9%] ml-[8%] lg:ml-[61%] mt-[10%] lg:mt-[5%] max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 p-1 lg:p-2 rounded-md"
+            className="mb-[12%] lg:mb-[9%] ml-[8%] lg:ml-[61%] mt-[10%] lg:mt-[5%] max-sm:w-[80%] w-[40%] lg:w-[30%] text-xl lg:text-2xl items-center justify-center gap-2 p-1 lg:p-2 rounded-md bg-[#1d154a] text-white text-center"
             title="Encerrar projeto"
           >
             Encerrar projeto

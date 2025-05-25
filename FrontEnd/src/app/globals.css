@@ -28,7 +28,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 .custom-button {
-  @apply bg-[#1d154a] text-white text-center;
+  @apply text-white text-center;
 }
 .titleList {
   @apply lg:px-3 text-center font-semibold;

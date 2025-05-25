@@ -8,9 +8,30 @@ interface Aluno {
   address: {
     state: string;
   };
+  gender: string;
 }
 
-export default function AlunoRow({ aluno }: { aluno: Aluno }) {
+export default function AlunoRow({
+  aluno,
+  onExpel,
+  onPromote,
+  onUnPromote,
+  onApproved,
+  onReproved,
+}: {
+  aluno: Aluno;
+  onExpel: (id: number) => void;
+  onPromote: (id: number) => void;
+  onUnPromote: (id: number) => void;
+  onApproved: (id: number) => void;
+  onReproved: (id: number) => void;
+}) {
+  const isReprovado = aluno.address.state === "Tennessee";
+
+  const statusButtonClasses = `custom-button itemListInside w-full text-white cursor-pointer ${
+    isReprovado ? "bg-red-600" : "bg-[#1d154a]"
+  } ${isReprovado ? "hover:bg-[#1d154a]" : "hover:bg-red-600"}`;
+
   return (
     <tr key={aluno.id}>
       <td className="itemList">
@@ -30,26 +51,39 @@ export default function AlunoRow({ aluno }: { aluno: Aluno }) {
       </td>
       <td className="p-3 lg:pl-[3%] text-center">
         <button
-          className="itemListBorder itemListInside"
+          className={`itemListInside border-2 cursor-pointer border-[#7e9dd6] ${
+            aluno.address.state === "Alabama"
+              ? "bg-black text-white hover:bg-white hover:text-black"
+              : "bg-white text-black hover:bg-black hover:text-white"
+          }`}
           title="Promover aluno a líder"
+          onClick={() =>
+            aluno.address.state === "Alabama"
+              ? onUnPromote(aluno.id)
+              : onPromote(aluno.id)
+          }
         >
           <FaCrown className="text-2xl" aria-label="Promover aluno a líder" />
         </button>
       </td>
       <td className="p-3 lg:pl-[5%] text-center">
         <button
-          className="itemListBorder text-red-600 itemListInside"
+          className="itemListInside cursor-pointer border-2 border-[#7e9dd6] bg-white text-red-600 hover:bg-red-600 hover:text-white"
           title="Expulsar aluno"
+          onClick={() => onExpel(aluno.id)}
         >
           <MdCancel className="text-2xl" aria-label="Expulsar aluno" />
         </button>
       </td>
       <td className="itemList">
         <button
-          className="custom-button itemListInside w-full"
+          className={statusButtonClasses}
           title="Situação do aluno"
+          onClick={() =>
+            isReprovado ? onApproved(aluno.id) : onReproved(aluno.id)
+          }
         >
-          Aprovado
+          {isReprovado ? "Reprovado" : "Aprovado"}
         </button>
       </td>
     </tr>
