@@ -43,7 +43,7 @@ const FormTeacher = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl my-16 bg-forms-teacher-bg rounded-xl shadow-xl py-8 px-6 md:px-8">
+    <div className="w-full max-w-5xl my-10 bg-forms-teacher-bg rounded-xl shadow-xl py-8 px-6 md:px-8">
       <form action="" className="">
         <div className="w-32 mx-auto mb-8">
           <label htmlFor="fileInput">
@@ -73,7 +73,7 @@ const FormTeacher = () => {
             {isEditing ? (
               <input
                 type="text"
-                className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
+                className="border border-text bg-background px-4 py-2 rounded-xl w-full"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -128,7 +128,7 @@ const FormTeacher = () => {
               <div className="relative">
                 <input
                   type={showCurrentPassword ? "text" : "password"}
-                  className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
+                  className="border border-text bg-input-teacher-bg-b px-4 py-2 rounded-xl w-full"
                   value={password ? password : "senhaAleatoria"}
                   disabled
                 />
@@ -152,7 +152,7 @@ const FormTeacher = () => {
               <div className="relative">
                 <input
                   type={showNewPassword ? "text" : "password"}
-                  className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
+                  className="border border-text bg-background px-4 py-2 rounded-xl w-full"
                   value={formData.password}
                   onChange={(e) =>
                     setFormData((p) => ({ ...p, password: e.target.value }))
