@@ -78,7 +78,7 @@ export default function List() {
   }
 
   function handleExpel(id: number) {
-    confirmation("Deseja expulsar este aluno?", () => expelAluno(id));
+    confirmation("Deseja remover este aluno?", () => expelAluno(id));
   }
 
   function promoteAluno(id: number) {
