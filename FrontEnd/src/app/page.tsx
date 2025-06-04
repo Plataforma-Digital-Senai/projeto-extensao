@@ -17,7 +17,6 @@ export default function Home() {
             </div>
           </div>
 
-          /* Descrição */
           <div className="mb-4 mt-10 ">
             <label className="block font-semibold mb-1 text-[#003366]">Descrição:</label>
             <input
@@ -27,7 +26,7 @@ export default function Home() {
             />
           </div>
 
-          /* Objetivos */
+         
           <div className="mb-6">
             <label className="block font-semibold mb-1 text-[#003366]">Objetivos:</label>
             <input
@@ -37,7 +36,7 @@ export default function Home() {
             />
           </div>
 
-          /* Rodapé com botões */
+        
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-10">
             <div className="text-sm text-gray-500 text-center md:text-left">
               Horas Válidas: <span className="font-semibold">40 <br /><br className="md:hidden"/></span> Vagas: <span className="font-semibold">0/40</span>
