@@ -7,7 +7,7 @@ export default function Home() {
 
       <main className="flex-1 ml-16 md:ml-[64px] transition-all duration-300 ease-in-out md:px-8 py-6">
         <div className="bg-[#dce6f0] rounded-xl shadow-lg p-8  max-w-3xl mx-auto w-full">
-          {/* Área das imagens */}
+          /* Área das imagens */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
             <div className="border-2 bg-gray-100 border-solid border-blue-950 rounded-md flex items-center justify-center h-48">
               <span className="text-gray-400">Insira uma imagem</span>
@@ -17,7 +17,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Descrição */}
+          /* Descrição */
           <div className="mb-4 mt-10 ">
             <label className="block font-semibold mb-1 text-[#003366]">Descrição:</label>
             <input
@@ -27,7 +27,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Objetivos */}
+          /* Objetivos */
           <div className="mb-6">
             <label className="block font-semibold mb-1 text-[#003366]">Objetivos:</label>
             <input
@@ -37,7 +37,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Rodapé com botões */}
+          /* Rodapé com botões */
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-10">
             <div className="text-sm text-gray-500 text-center md:text-left">
               Horas Válidas: <span className="font-semibold">40 <br /><br className="md:hidden"/></span> Vagas: <span className="font-semibold">0/40</span>
