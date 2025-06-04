@@ -120,7 +120,7 @@ export default function Sidebar({ session_token_role }: { session_token_role: st
                   <CircleUser size={32} className="text-white" />
                   {isSidebarExpanded && (
                     <div className="flex flex-col hidden md:block md:visible">
-                      <span className="text-white font-medium">Rodrigo</span>
+                      <span className="text-white font-medium">André</span>
                       <br />
                       <span className="text-gray-400 text-sm">
                         {session_token_role === 'professor' ? 'Professor' : 'Estudante'}
@@ -130,7 +130,7 @@ export default function Sidebar({ session_token_role }: { session_token_role: st
                 </div>
               </TooltipTrigger>
               <TooltipContent side="right" className="px-3 py-1.5 text-xs bg-gray-800 text-white">
-                <span>Rodrigo - {session_token_role === 'professor' ? 'Professor' : 'Estudante'}</span>
+                <span>André - {session_token_role === 'professor' ? 'Professor' : 'Estudante'}</span>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
