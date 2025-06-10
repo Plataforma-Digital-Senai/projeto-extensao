@@ -7,14 +7,14 @@ import Image from 'next/image';
 export default function Home() {
     const [email, setEmail] = useState('');
   return (
-    <div className=" flex items-center justify-center min-h-screen bg-white">
-      <div className="w-180 border-3 shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-xl border-[#261178] ">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4 mx-5">
+      <div className="w-130 px-3 border-3 shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-xl border-[#261178] ">
         <div className="flex flex-col items-center text-center gap-6">
           <div className='p-6 mt-10 rounded-full bg-[#524FB066]'>
             <Image
                 src='/imagemChave.png'
                 alt="Imagem Chave"
-                width={90} // Defina conforme necessário
+                width={70} 
                 height={90}
                 /> 
             </div>
