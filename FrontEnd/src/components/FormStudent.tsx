@@ -15,30 +15,32 @@ const FormStudent = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("Rodrigo Souza");
   const [password, setPassword] = useState("");
+  const [imagePreview, setImagePreview] = useState<string>("");
   const [formData, setFormData] = useState({
     name,
     password: "*****",
     cpf: "000.000.000-00",
     email:"admin@gmail.com",
     ra: "12345678",
-    course: "Análise de Sistemas",
+    course: "Análise e Desenvolvimento de Sistemas",
     classGroup: "1º Semestre A",
+    image: ""
   });
 
-  /* imagem de perfil */
-  const defaultImage = isEditing
-    ? "./image/user-icon-add.png"
-    : "./image/user-icon.png";
-  const [image, setImage] = useState<string>(defaultImage);
+  const [savedData, setSavedData] = useState(formData);
 
   /* visibilidade das senhas */
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
+  const [showSavedMessage, setShowSavedMessage] = useState(false);  
+
   /* sincroniza a imagem padrão quando muda o modo */
   useEffect(() => {
-    setImage(defaultImage);
-  }, [isEditing]);
+     if (!isEditing) {
+      setImagePreview("");
+      }
+    }, [isEditing]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -50,43 +52,53 @@ const FormStudent = () => {
       ra: formData.ra,
       course: formData.course,
       classGroup: formData.classGroup,
+      image: ""
     });
   };
 
   const handleSave = () => {
     console.log("Dados salvos:", formData);
+    setSavedData({ ...formData, image: imagePreview || formData.image });
     setName(formData.name);
     setPassword(formData.password);
     setIsEditing(false);
+    setShowSavedMessage(true);
+    setTimeout(() => setShowSavedMessage(false), 3000);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+      setImagePreview(imageUrl);
+      setFormData(prev => ({ ...prev, image: imageUrl }));
     }
   };
 
+
   return (
-    <div className="w-full max-w-5xl my-16 bg-forms-teacher-bg rounded-xl shadow-xl py-8 px-6 md:px-8">
+    <div className="w-full max-w-5xl my-16 bg-forms-teacher-bg rounded-xl shadow-xl py-8 px-4 md:px-8 overflow-x-hidden">
       <form action=""> 
         {/* imagem de perfil */}
-        <div className="w-32 mx-auto mb-8">
-          <img
-            src={image || "/image/user-icon.png"}
+        <div className="flex justify-center mb-8">
+          <div className="w-64 bg-sidebar h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white shadow-md">
+           <img
+            src={
+            isEditing
+              ? imagePreview || savedData.image || "/image/user-icon-add.png"
+              : savedData.image || "/image/user-icon.png"
+            }
             alt="Imagem de perfil"
-            className="w-full h-full object-cover rounded-full cursor-pointer"
+            className="w-full h-full object-cover"
           />
+          </div>
           {isEditing && (
-            <div className="hover:opacity-80">
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="text-sm"
+                className="mt-3 text-sm"
               />
-            </div>
           )}
         </div>
 
@@ -117,6 +129,7 @@ const FormStudent = () => {
                 className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
                 type="text"
                 placeholder="000.000.000-00"
+                disabled={true}
                 value={formData.cpf}
                 onChange={(e) =>
                   setFormData((p) => ({
@@ -142,6 +155,7 @@ const FormStudent = () => {
               className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
               type="email"
               placeholder="admin@gmail.com"
+              disabled={true}
               value={formData.email}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
@@ -161,6 +175,7 @@ const FormStudent = () => {
               className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
               type="text"
               placeholder="12345678"
+              disabled={true}
               value={formData.ra}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, ra: e.target.value }))
@@ -179,14 +194,20 @@ const FormStudent = () => {
           <div className="w-full md:w-1/2">
             <label>Curso:</label>
             {isEditing ? (
-              <input
-                type="text"
+              <select
                 className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full"
                 value={formData.course}
                 onChange={(e) =>
                   setFormData((p) => ({ ...p, course: e.target.value }))
                 }
-              />
+              >
+              <option value="">Selecione seu curso</option>
+              <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+              <option value="Engenharia da Computação">Engenharia da Computação</option>
+              <option value="Ciência da Computação">Ciência da Computação</option>
+              <option value="Redes de Computadores">Redes de Computadores</option>
+              <option value="Sistemas de Informação">Sistemas de Informação</option>
+              </select>
             ) : (
               <p className="border border-text bg-input-teacher-bg-a px-4 py-2 rounded-xl w-full">
                 {formData.course}
@@ -287,6 +308,11 @@ const FormStudent = () => {
                 Editar
               </button>
             </div>
+          )}
+          {showSavedMessage && (
+            <p className="fixed bottom-6 right-6 bg-green-400 text-white px-4 py-2 rounded-xl shadow-xl z-50 animate-fade-in-out">
+              Dados salvos com sucesso!
+            </p>
           )}
         </div>
       </form>
